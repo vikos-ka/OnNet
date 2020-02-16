@@ -1,0 +1,33 @@
+.nav {
+    grid-area: nav;
+    background-color:#0e1a35;
+    color:#ffffff;
+    font-size: .8em;
+    position: fixed;
+    height: 100vh;
+    top: 50px;
+    width: 18%;
+}
+  
+.nav .item {
+    text-transform: uppercase;  
+    padding: 10% 0;
+    padding-left: 15%;
+    background-color:#0e1a35;
+  
+}
+.activeLink .item {
+   background-color: firebrick;
+ 
+}
+
+.nav a.active li::before {
+    background-color: #122143;
+    
+   
+ }
+
+.nav li svg {
+    padding-right: 5%;
+    color: #4272bf;
+}

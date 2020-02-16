@@ -1,0 +1,31 @@
+.post {
+    margin: 2% 4%;
+    width: 70%;
+}
+
+.postAndAuthor {
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.postAuthor {
+    margin-right: 2%;
+}
+
+.postText {
+    max-height: 50%;
+    font-size: .8em;
+    
+}
+
+.likeComment {
+    display: flex;
+    font-size: .7em;
+    color: #4272bf;
+    cursor: pointer;
+}
+
+.likeComment span:first-child {
+    margin-right: 10%;
+}
+

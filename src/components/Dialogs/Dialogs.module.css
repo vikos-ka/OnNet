@@ -1,0 +1,40 @@
+.messagesAndDialogs {
+    display: grid;
+    padding-top: 20px;
+    padding-left: 20px;
+    grid-template-columns: 4fr 10fr;
+    grid-column-gap: 6%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dialogItems {
+    background: #fff;
+    border: 1px solid #ede9e9;
+    border-radius: 5px;
+    width: 100%;    
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.messages {
+    background: #fff;
+    border: 1px solid #ede9e9;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.dialog {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.message {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dialog .active {
+    color: gold;
+}
