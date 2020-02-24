@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Profile.module.css';
-import MyPosts from './MyPosts/MyPosts'
+import MyPostsContainer from './MyPosts/MyPostsContainer'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 
 const Profile = (props) => {
@@ -8,7 +8,7 @@ const Profile = (props) => {
     return(
       <section className = { style.profile }>
         <ProfileInfo />    
-        <MyPosts  posts = {props.posts}/>   
+        <MyPostsContainer  store = {props.store} />   
       </section>
     );
 }

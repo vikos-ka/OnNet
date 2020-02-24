@@ -4,14 +4,27 @@ import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 
 
-
 const Dialogs = (props) => { 
+    debugger;
+
+    let state = props.dialogsPage;
 
 
-    let dialogItems = props.dialogs.map( dialog => 
+    let dialogItems = state.dialogs.map( dialog => 
                         <Dialog id = {dialog.id} name = {dialog.name}/>)
-    let messageItems = props.messages.map( message => 
+    let messageItems = state.messages.map( message => 
                         <Message id = {message.id} message = {message.message} />)
+
+
+    const onSendMessage = () => {
+        props.sendMessage();
+    }
+
+    const onNewMessageChange = (e) =>{
+        let body = e.target.value;
+        props.updateNewMessageBody(body);
+      
+    }
     
     return (
         <section className = {style.messagesAndDialogs}>
@@ -24,12 +37,17 @@ const Dialogs = (props) => {
 
             <div className = {style.messages}>
                 <h2>Messages</h2>
-                {messageItems}
-
+                <div className = {style.message__Item}>{messageItems}</div>
                 <div className = {style.newMessage}>
-                    <input type="text"/>
-                    <button type= "submit" ><i class="fa fa-paper-plane-o"></i></button>
-                </div>
+			
+						<div className ={style.text_area}>
+                            <textarea onChange = {onNewMessageChange}  rows="2" placeholder="Write a message" value = {props.newMessageBody}/>
+                             <button onClick = 
+                             {onSendMessage} type= "submit" ><i class="fa fa-paper-plane-o"></i></button>
+						</div>
+												
+				
+				</div>              
             </div>
         </section>
     )

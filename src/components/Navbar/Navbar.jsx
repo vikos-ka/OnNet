@@ -10,6 +10,8 @@ function Navbar() {
           <ul>
           <li className = {style.item}><NavLink to="/profile"><i className="fas fa-user-circle"></i>My profile</NavLink></li>
           <li className = {style.item}><NavLink to="/dialogs"><i className="fas fa-envelope"></i>Dialogs</NavLink></li>
+          <li className = {style.item}><NavLink to="/friends"><i className="fas fa-user-friends"></i>Friends</NavLink></li>
+          <li className = {style.item}><NavLink to = "/users"><i className="fas fa-users"></i>Find Users</NavLink></li>
           <li className = {style.item}><NavLink to="/news"><i className="fas fa-rss"></i>News</NavLink></li>
           <li className = {style.item}><NavLink to="/music"><i className="fas fa-headphones-alt"></i>Music</NavLink></li>
           <li className = {style.item}><NavLink to ="/settings"><i className="fas fa-cogs"></i>Settings</NavLink></li>

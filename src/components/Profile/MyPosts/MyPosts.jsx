@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './MyPosts.module.css';
-import Post from './Post/Post.jsx'
-
+import Post from './Post/Post.jsx';
+import { addPostActionCreator,  updateNewPostTextActionCreator} from '../../../redux/profileReducer'
 
 
 
@@ -9,13 +9,25 @@ import Post from './Post/Post.jsx'
 
 const MyPosts = (props) => {
 
-    let postsItems = props.posts.map( post => 
+    const postsItems = props.posts.map( post => 
                         <Post 
                             id = {post.id} 
                             message = {post.message} 
                             like = {post.like} 
                             comment = {post.comment} 
                         />)
+
+    const onAddPost = () => {
+       
+        props.addPost();
+    }
+
+    const onPostChange = (e) =>{
+        const text =e.target.value;
+        props.updateNewPostText(text);
+        //const action = updateNewPostTextActionCreator(text);
+       // props.dispatch(action); //action объект, кторый приходит в store
+    }
 
     return(
         <div className ={style.posts}>
@@ -26,7 +38,7 @@ const MyPosts = (props) => {
 						<img src="https://via.placeholder.com/50" alt="admin" />
 					</figure>
                     <form method="post">
-			            <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
+			            <textarea onChange = {onPostChange} rows="2" placeholder="Share some what you are thinking?" value = {props.newPostText}/>
 				    </form>
                 </div>
                 <ul>
@@ -49,10 +61,10 @@ const MyPosts = (props) => {
                     </li>
 					
 					<li className={style.preview}>
-	                    <button className={style.previewBtn} type="submit" data-ripple="">Preview</button>
+	                    <button  className={style.previewBtn} type="submit" data-ripple="">Preview</button>
 					</li>
 				</ul>
-                <button id = {style.btn} type = "submit">Post</button>
+                <button onClick = {onAddPost} id = {style.btn} type = "submit">Post</button>
             </div>
         <div className = {style.posts}>
             {postsItems}
