@@ -1,8 +1,7 @@
 import React from 'react';
 import style from './App.module.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Friends from './components/Friends/Friends';
 import Music from './components/Music/Music';
@@ -10,15 +9,16 @@ import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer'
 import {Route} from 'react-router-dom'
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 const App = (props) => {
 return ( 
     <div className={ style.wrapper }>
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <main className={ style.wrapperContent }>
-          <Route exact path = '/' render={() => <Profile store = {props.store} />} />
-          <Route path = '/profile' render={() => <Profile store = {props.store} />} />
+          <Route exact path = '/' render={() => <ProfileContainer store = {props.store} />} />
+          <Route path = '/profile/:userId?' render={() => <ProfileContainer store = {props.store} />} />
           <Route path = '/dialogs' render={() => <DialogsContainer store = {props.store} />} />
           
           <Route path = '/users' render = { () => <UsersContainer store = {props.store} />} />

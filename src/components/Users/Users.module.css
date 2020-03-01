@@ -45,3 +45,24 @@
     transition: all 0.2s linear 0s;
 
 }
+
+.btn:disabled {
+    background: red none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 11px;
+    padding: 5px;
+    margin-right: 10px ;
+    width: 30%;
+    transition: all 0.2s linear 0s;
+
+}
+.selected__page {
+    font-weight: 700;
+    cursor: pointer;
+}
+.page {
+    cursor: pointer;
+}

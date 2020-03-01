@@ -1,13 +1,34 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
+import Preloader from '../../common/preloader';
+import placeholder from '../../../assets/img/user.png'
 
-function ProfileInfo() {
+
+const ProfileInfo = (props) => {
+
+  if (!props.profile) {
+    return <Preloader />
+  }
     return(
+  
         <div className = { style.profile }>
-          <div className = { style.cover }></div>
+          <div className = { style.user }>Ava + disc
+							<h4 className ={style.user__name}>Your page</h4>	
+							<div className={style.your__page}>
+                <div className={style.user__photo}>
+								<figure>
+                	<img src={
+                    props.profile.photos.large ? props.profile.photos.large :placeholder} alt="avatar" />
+								</figure>
+                </div>
+                <div className="user__info">
+                  
+                </div>
+								</div>
+						</div>
 
-          <div className = { style.user }>Ava + disc</div>
-      </div>
+          </div>
+   
     );
 }
 export default ProfileInfo;

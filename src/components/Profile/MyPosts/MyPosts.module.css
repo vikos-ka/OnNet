@@ -14,11 +14,9 @@
 }
 
 .posts {
+    margin: 0 auto;
     margin-top: 2%;
-    margin-left: 2%;
-    
-    flex: 0 0 50%;
-    max-width: 50%;
+    width: 80%;
 
 }
 
@@ -28,8 +26,8 @@
     background: #fff none repeat scroll 0 0;
     border: 1px solid #ede9e9;
     border-radius: 5px;
-    display: inline-block;
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
     margin-bottom: 20px;
     padding: 20px;
 }
