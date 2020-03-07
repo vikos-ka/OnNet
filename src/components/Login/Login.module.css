@@ -1,0 +1,95 @@
+
+.form__container{
+
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(77,170,210);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.form__container form {
+    background-color: rgb(255,255,255);
+    border-radius: 0.25em;
+    width: 30%;
+    height: 60%;
+    margin: 2em;
+    border: 1px solid rgb(255,255,255);
+    box-shadow: 0 0 0 8px rgba(67, 103, 202, 0.4);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  
+   
+}
+.form__container h2 {
+    width: 100%;
+    color: rgb(85,85,85);
+    text-align: center;
+    border-bottom: 1px solid grey;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 10px;
+    align-self: center;
+}
+.form__field {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+
+}
+.form__container .input__right input {
+    width: 100%;
+    height: 25px;
+    border: .7px solid gray;
+    box-shadow: 0 0 0 6px lightgrey;
+    padding: 5px 10px;
+    margin: 0 40px;
+    border-radius: 2px;
+    font-size: 14px;
+}
+#checkbox {
+    margin-top:20px;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form__container input[type="checkbox"] {
+    border-radius: 2px; 
+    justify-content: left;
+}
+
+.loginBtn{
+    height: 30px;
+    width: 100px;
+    background-color: rgb(226,238,243);
+    border: 1px solid rgb(184,196,203);
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px rgb(173, 195, 230);
+    color: rgb(85,85,85);
+    font-weight: 700;
+    font-size: .9em;
+    padding-left: 30px;
+}
+
+.form__container p{
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 0;
+}
+.form__container p a{
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+
+

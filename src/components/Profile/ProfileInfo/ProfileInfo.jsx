@@ -1,7 +1,8 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
 import Preloader from '../../common/preloader';
-import placeholder from '../../../assets/img/user.png'
+import placeholder from '../../../assets/img/user.png';
+import ProfileStatus from './ProfileStatus'
 
 
 const ProfileInfo = (props) => {
@@ -18,11 +19,13 @@ const ProfileInfo = (props) => {
                 <div className={style.user__photo}>
 								<figure>
                 	<img src={
-                    props.profile.photos.large ? props.profile.photos.large :placeholder} alt="avatar" />
+                    props.profile.photos.large 
+                      ? props.profile.photos.large 
+                      : placeholder} alt="avatar" />
 								</figure>
                 </div>
                 <div className="user__info">
-                  
+                  <ProfileStatus status ={props.status} updateStatus = {props.updateStatus} />
                 </div>
 								</div>
 						</div>

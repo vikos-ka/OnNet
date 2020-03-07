@@ -1,36 +1,49 @@
 import React from 'react';
 import Profile from './Profile';
-import * as axios from 'axios';
 import { connect } from 'react-redux';
-import {setUserProfile } from '../../redux/profileReducer'
+import { getUserProfileThunk, getStatusThunk, updateStatusThunk } from '../../redux/profileReducer'
 import { withRouter } from 'react-router-dom';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
+
 
 class ProfileContainer extends React.Component {
+   
 
     componentDidMount() {
+        debugger;
        let userId = this.props.match.params.userId;
        if (!userId) {
-           userId =2;
+           userId = this.props.authorisedUserId;
+           if(!userId) {
+               this.props.history.push('/login')
+           }
        }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+ userId)
-            .then(response => {
-                this.props.setUserProfile(response.data);
-        });
+        this.props.getUserProfileThunk(userId);
+        this.props.getStatusThunk(userId)
     }
    
     render() {
-
-    return(
-      <Profile {...this.props} profile = {this.props.profile}/>
-    );
-    }
+        return(
+        <Profile {...this.props} 
+            profile = {this.props.profile} 
+            status = {this.props.status} 
+            updateStatus = {this.props.updateStatusThunk}/>
+        );
+        }
 
 }
 
+const mapStateToProps = (state) => ({
+    profile: state.profilePage.profile,
+    status: state.profilePage.status,
+    authorisedUserId: state.authReducer.userId,
+    isAuth: state.authReducer.isAuth
 
-let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile
 });
 
-let WithUrlDataComponent = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {setUserProfile})(WithUrlDataComponent);
+export default compose(
+    connect(mapStateToProps, {getUserProfileThunk, getStatusThunk, updateStatusThunk}),
+    withRouter,
+    withAuthRedirect,
+)(ProfileContainer);

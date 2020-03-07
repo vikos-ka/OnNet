@@ -1,2 +1,0 @@
-# OnNet
-Social network

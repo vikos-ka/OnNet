@@ -4,11 +4,12 @@ import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
 
+  
 
     return (
         <header className = {style.header}>
           <div className = {style.logo}>
-            <a href = "#" alt = "logo"><i className="fas fa-power-off"></i>nNet</a>
+            <span><i className="fas fa-power-off"></i>nNet</span>
           </div>
 
           <div className = {style.serviceBar}>
@@ -29,8 +30,8 @@ const Header = (props) => {
         </div>
         <div className={style.login__block}>
           {props.isAuth 
-            ? props.login 
-            : <NavLink to = {'/login'}>Login</NavLink>}
+            ? <div> {props.login}<button className = {style.btn} onClick = {props.logoutThunk}>Logout</button></div>
+            : <NavLink to = {'/login'}><button className = {style.btn}>Login</button></NavLink>}
         </div>
       </header>
     )

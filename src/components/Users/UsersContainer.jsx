@@ -1,39 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import * as axios from 'axios';
-import { setUsers, follow, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching , toggleFollowingProgress} from '../../redux/usersReducer';
+import {follow, unfollow, setCurrentPage,toggleFollowingProgress, getUsersThunkCreator} from '../../redux/usersReducer';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Preloader from '../common/preloader.jsx';
-import { getUsers } from '../../api/api';
+import { compose } from 'redux';
 
 
-class UsersCont extends React.Component {
+class UserContainer extends React.Component {
     //constructor(props) {} можно не писать, так как, класс только и делае, что возвращает разметку
     //constructor(props) {
     //    super(props);
     //}
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(response.items);
-            this.props.setTotalUsersCount(response.totalCount)
-        })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (page) => {
-        this.props.setCurrentPage(page);
-        this.props.toggleIsFetching(true);
-        getUsers(page, this.props.pageSize).then(response => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(response.items)
-        });
+        this.props.getUsersThunkCreator(page, this.props.pageSize)
     }
 
     render() {
-
-      
         return <>
 
         {this.props.isFetching? <Preloader /> : null}
@@ -44,16 +32,11 @@ class UsersCont extends React.Component {
                 users = {this.props.users} 
                 follow = {this.props.follow} 
                 unfollow = {this.props.unfollow}
-                toggleFollowingProgress = {this.props.toggleFollowingProgress}
                 followingInProgress = {this.props.followingInProgress}/>
             </>
     }
 
 }
-
-
-
-
 
 const mapStateToProps = (state) => {
     return {
@@ -96,10 +79,6 @@ const mapStateToProps = (state) => {
     }
 }
 */
-
-
-const UsersContainer = connect(mapStateToProps, 
-    { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress})
-    (UsersCont) // вместо mapDispatchtoProps
-
-export default UsersContainer;
+export default compose(
+    connect(mapStateToProps, { follow, unfollow, setCurrentPage, getUsersThunkCreator,toggleFollowingProgress}),
+)(UserContainer);
