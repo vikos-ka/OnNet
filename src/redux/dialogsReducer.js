@@ -1,7 +1,7 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SEND_MESSAGE = 'dialogs/SEND-MESSAGE';
 
 
-let initialState = {
+const initialState = {
 
     dialogs: [{
         id: 1, name: "Max"
@@ -54,7 +54,6 @@ messages: [{
 
 
 const dialogsReducer = (state = initialState, action) => {
-
     switch (action.type) {
 
         case SEND_MESSAGE: {
@@ -63,16 +62,12 @@ const dialogsReducer = (state = initialState, action) => {
                 ...state,
                 messages: [...state.messages, {id: 6,
                     message: body}]
-
-
             }
         }
         default: 
             return state;
     }
-
 }
-
 
 export const sendMessageActionCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody });
 

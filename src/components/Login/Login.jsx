@@ -1,12 +1,13 @@
 import React from 'react';
-import style from './Login.module.css'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+
+import style from './Login.module.css'
 import { Input } from '../common/Forms';
 import {required} from '../../utils/validators/validators';
 import { loginThunk, logoutThunk } from '../../redux/authReducer'
 
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 
 

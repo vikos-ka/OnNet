@@ -1,11 +1,11 @@
-import {userAPI, profileAPI} from '../api/api'
+import { userAPI, profileAPI } from '../api/api'
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'profile/ADD-POST';
+const DELETE_POST = 'profile/DELETE-POST';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
 
-
-let initialState = {
+const initialState = {
     posts: [{
         id: 1,
         message: "Hi! How are you?",
@@ -68,8 +68,13 @@ const profileReducer = (state = initialState, action) => {
                 posts: [...state.posts, newPost],
                 newPostText: ""
             }
-           //в state profile page, поэтому обращаемся просто к state     
-            
+        }
+
+        case DELETE_POST: {
+            return{
+                ...state,
+                posts: state.posts.filter( post => post.id !== action.postId)
+            }
         }
 
         case SET_USER_PROFILE: {
@@ -93,6 +98,9 @@ const profileReducer = (state = initialState, action) => {
 }
 
 export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText });
+
+export const deletePostActionCreator = (postId) => ({ type: DELETE_POST, postId });
+
 export const setUserProfile = (profile) => ({
     type: SET_USER_PROFILE, profile
 });
@@ -102,29 +110,22 @@ export const setStatus = (status) => ({
 });
 
 
-export const getUserProfileThunk = (userId) => (dispatch) => {
-    userAPI.getProfile(userId)
-    .then(response => {
+export const getUserProfileThunk = (userId) => 
+    async (dispatch) => {
+    const response =  await userAPI.getProfile(userId);
         dispatch(setUserProfile(response.data));
-});
 };
 
 
-export const getStatusThunk = (userId) => (dispatch) => {
-    debugger
-    profileAPI.getStatus(userId)
-    .then(response => {
+export const getStatusThunk = (userId) => async (dispatch) => {
+    const response = await profileAPI.getStatus(userId)
         dispatch(setStatus(response.data));
-});
 };
 
-export const updateStatusThunk = (status) => (dispatch) => {
-    debugger;
-    profileAPI.updateStatus(status)
-    .then(response => {
-        if(response.data.resultCode === 0) {
+export const updateStatusThunk = (status) => async (dispatch) => {
+    const response = await profileAPI.updateStatus(status)
+    if(response.data.resultCode === 0) {
         dispatch(setStatus(status));}
-});
 };
 
 export default profileReducer;

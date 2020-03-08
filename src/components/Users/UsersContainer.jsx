@@ -1,20 +1,18 @@
 import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+
 import Users from './Users';
 import {follow, unfollow, setCurrentPage,toggleFollowingProgress, getUsersThunkCreator} from '../../redux/usersReducer';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Preloader from '../common/preloader.jsx';
-import { compose } from 'redux';
+import { getPageSize, getUsers, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingProgress } from '../../redux/usersSelectors'
 
 
 class UserContainer extends React.Component {
-    //constructor(props) {} можно не писать, так как, класс только и делае, что возвращает разметку
-    //constructor(props) {
-    //    super(props);
-    //}
 
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsersThunkCreator(currentPage, pageSize);
     }
 
     onPageChanged = (page) => {
@@ -23,8 +21,7 @@ class UserContainer extends React.Component {
 
     render() {
         return <>
-
-        {this.props.isFetching? <Preloader /> : null}
+            {this.props.isFetching? <Preloader /> : null}
             <Users totalUsersCount = {this.props.totalUsersCount} 
                 pageSize = {this.props.pageSize} 
                 currentPage = {this.props.currentPage} 
@@ -40,45 +37,15 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingProgress(state),
     }  
 }
 
-/*const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            const action = followAC(userId);
-            dispatch(action)
-        },
-        unfollow: (userId) => {
-            const action = unfollowAC(userId);
-            dispatch(action)
-        },
-        setUsers: (users) => {
-            const action = setUsersAC(users);
-            dispatch(action)
-        },
-        setCurrentPage: (pageNumber) => {
-            const action = setCurrentPageAC(pageNumber);
-            dispatch(action)
-        },
-        setTotalUsersCount: (totalCount) => {
-            const action = setTotalUsersCountAC(totalCount);
-            dispatch(action)
-        },
-        toggleIsFetching: (isFetching) => {
-            const action = toggleIsFetchingAC(isFetching);
-            dispatch(action)
-        },
-
-    }
-}
-*/
 export default compose(
     connect(mapStateToProps, { follow, unfollow, setCurrentPage, getUsersThunkCreator,toggleFollowingProgress}),
 )(UserContainer);

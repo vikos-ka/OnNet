@@ -36,9 +36,6 @@ const AddNewPostForm = (props) => {
 					    </li>
                     </li>
 					
-					<li className={style.preview}>
-	                    <button  className={style.previewBtn} type="submit" data-ripple="">Preview</button>
-					</li>
 				</ul>
                 <button id = {style.btn} type = "submit">Post</button>
                 </form></div>
@@ -49,15 +46,16 @@ const AddNewPostForm = (props) => {
 const AddNewPostFormRedux = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm)
 
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
 
     const postsItems = props.posts.map( post => 
                         <Post 
                             id = {post.id} 
                             message = {post.message} 
                             like = {post.like} 
-                            comment = {post.comment} 
-                        />)
+                            comment = {post.comment}
+                            key = {post.id} 
+                        />).reverse();
 
     const onAddPost = (values) => {  
         props.addPost(values.newPostText);
@@ -72,5 +70,6 @@ const MyPosts = (props) => {
         </div>
         </div>    
     );
-}
+})
+
 export default MyPosts;
