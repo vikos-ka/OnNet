@@ -5,16 +5,10 @@ import Paginator from '../common/Paginator';
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }   
-  
     return (
         <div className={style.users__page}>
-           <Paginator currentPage = {props.currentPage} onPageChanged = {props.onPageChanged} totalUsersCount = {props.totalUsersCount} pageSize = {props.pageSize} />
+           <Paginator currentPage = {props.currentPage} onPageChanged = {props.onPageChanged} 
+           totalItemsCount = {props.totalUsersCount} pageSize = {props.pageSize} />
             {props.users.map( user => 
                 <User key = {user.id} 
                     user = {user} 

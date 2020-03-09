@@ -13,8 +13,8 @@ const FOLLOWING_IN_PROGRESS = 'users/FOLLOWING_IN_PROGRESS'
 const initialState = {
     users: [
     ],
-    pageSize: 5,
-    totalUsersCount: 21,
+    pageSize: 10,
+    totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
     followingInProgress: []
