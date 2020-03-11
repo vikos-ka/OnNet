@@ -1,17 +1,19 @@
 .nav {
     grid-area: nav;
-    background-color:#424874;
-    color:#ffffff;
+    background-color: #ffffff;
+    color:#000000;
     position: fixed;
     top: 90px;
     font-size: 1em;
     width: 20%;
-    border-radius: 25px;
+    margin: 0 15px;
+    padding-right: 15px;
+    margin-right: 15px;
 }
   
 .nav .item {
     text-transform: uppercase;  
-    padding: 10% 0;
+    padding: 5% 0;
     padding-left: 15%;
 }
 
@@ -27,6 +29,8 @@
  }
 
 .nav li svg {
+    font-size: 2em;
+    padding-top: 5%;
     padding-right: 5%;
     color: #4272bf;
 }

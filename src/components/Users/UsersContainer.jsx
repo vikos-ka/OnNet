@@ -1,5 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
+import style from './Users.module.css';
 import { connect } from 'react-redux';
 
 import Users from './Users';
@@ -20,8 +21,11 @@ class UserContainer extends React.Component {
     }
 
     render() {
-        return <>
-            {this.props.isFetching? <Preloader /> : null}
+        debugger
+        
+        return (
+        <section className={style.users__container}>
+            {this.props.isFetching? <div className = {style.preloader__container}><Preloader /></div> : null}
             <Users totalUsersCount = {this.props.totalUsersCount} 
                 pageSize = {this.props.pageSize} 
                 currentPage = {this.props.currentPage} 
@@ -30,7 +34,8 @@ class UserContainer extends React.Component {
                 follow = {this.props.follow} 
                 unfollow = {this.props.unfollow}
                 followingInProgress = {this.props.followingInProgress}/>
-            </>
+            </section>
+        )
     }
 
 }

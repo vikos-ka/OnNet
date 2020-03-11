@@ -6,9 +6,14 @@ import Paginator from '../common/Paginator';
 const Users = (props) => {
 
     return (
-        <div className={style.users__page}>
-           <Paginator currentPage = {props.currentPage} onPageChanged = {props.onPageChanged} 
-           totalItemsCount = {props.totalUsersCount} pageSize = {props.pageSize} />
+        <div className={style.users__container}>
+            <div className = {style.paginator}>
+            <Paginator 
+                currentPage = {props.currentPage} onPageChanged = {props.onPageChanged} 
+                totalItemsCount = {props.totalUsersCount} pageSize = {props.pageSize} />
+            </div>
+            <div className={style.users__page}>
+           
             {props.users.map( user => 
                 <User key = {user.id} 
                     user = {user} 
@@ -17,6 +22,7 @@ const Users = (props) => {
                     unfollow = {props.unfollow} />
             )
     }
+    </div>
     </div>
     )
 }

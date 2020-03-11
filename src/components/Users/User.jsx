@@ -15,26 +15,24 @@ const User = (props) => {
                 </div>
                 <div className={style.user__about}>
                 <div className={style.user__name}>{props.user.name}</div>
-                <div className={style.location__city}>{"user.location.city"}</div>
-                <div className={style.location__country}>{"user.location.country"}</div>
-            </div>
+           
         {
         props.user.followed
             ?<button disabled = {props.followingInProgress.some(id => id === props.user.id)} onClick={()=> 
             { 
                 props.unfollow(props.user.id);
             }}
-                 className={style.btn} type="submit">Unfollow</button>
+                 className="btn btn-primary" type="submit">Unfollow</button>
             :<button disabled = {props.followingInProgress.some(id => id === props.user.id)} onClick={()=>
             {
                 props.follow(props.user.id)
             }}
             
-            className={style.btn} type="submit">Follow</button>}
-
-
+            className="btn btn-primary"  type="submit">Follow</button>}
 
         </div>
+
+    </div>
     )
 }
 

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { Input, CreateField } from '../common/Forms';
 
-import style from './Login.module.css'
+import './Login.css';
 
 import {required} from '../../utils/validators/validators';
 import { loginThunk, logoutThunk, getCaptchaThunk } from '../../redux/authReducer'
@@ -14,20 +14,29 @@ import { loginThunk, logoutThunk, getCaptchaThunk } from '../../redux/authReduce
 
 const LoginForm = (props) => {
     return (
-        <form onSubmit = {props.handleSubmit}> 
-            <h2>Login Page</h2>
-            <div className={style.form__field + " " + style.input__right}>
-                <Field component= {Input} validate = {[required]} name="email" id="login" placeholder="Your email" />
-            </div>
-            <div className={style.form__field + " " + style.input__right}>
-                <Field  component= {Input} validate = {[required]}type="password" name="password" id="pass" placeholder="Password" />
-            </div>
-            <div id="checkbox" className={style.form__field}>
-                <label >
-                    <Field component= {Input} type="checkbox" name="rememberMe" id="rememberMe" />
-                    Remember me on this computer
-                </label>
-            </div>
+        <div className="container">
+            <div className ="row">
+                <div className="col-md-offset-3 col-md-6">
+                    <form className="form-horizontal" onSubmit = {props.handleSubmit}> 
+                        <h2 className ="heading" >Login Page</h2>
+                        <div className="form-group">
+                            <Field className = "form-control" component= {Input} validate = {[required]} name="email" type="email" id="login" placeholder="Your email" />
+                            <i className ="fa fa-user"></i>
+                        </div>
+                        <div className="form-group help">
+                            <Field  className= "form-control"component= {Input} validate = {[required]}type="password" name="password" id="pass" placeholder="Password" />
+                            <i className="fa fa-lock"></i>
+                        </div>
+
+
+                        <div className="form-group">
+                            <div className="main-checkbox" id="checkbox">
+                                <Field 
+                                value= "none"
+                                component= {Input} type="checkbox" name="rememberMe" id="rememberMe" 
+                               />
+                            </div>
+                            <span className ="text">Remember Me</span>
 
             { props.captcha && <img src = {props.captcha} alt = "captcha"/>}
 
@@ -35,8 +44,14 @@ const LoginForm = (props) => {
 
             {props.error && <div>{props.error}</div>}
 
-            <button id = "loginBtn" className={style.form__field + " " + style.loginBtn} type="submit">Login</button>
+                <div>
+                <button id = "loginBtn" className="btn  btn-default" type="submit">Login</button>
+                </div>
+                </div>
         </form>
+        </div>
+        </div>
+        </div>
     )
 }
 
@@ -53,7 +68,7 @@ const Login = (props) => {
     if (props.isAuth) {
         return <Redirect to = {'/profile'} />
     }
-    return <div className = {style.form__container}>
+    return <div className = "form__container">
         <ReduxLoginForm onSubmit = {onSubmit} captcha = {props.captcha} />
     </div>
 }

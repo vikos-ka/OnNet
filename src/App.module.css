@@ -1,5 +1,5 @@
 body {
-  background-color: #dcd6f7;
+  background-color: #efefef;
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
@@ -15,29 +15,33 @@ li {
 a {
   color: inherit;
   text-decoration: none;
+
+}
+
+a:hover {
+ text-decoration: none;
+  
 }
 
 .wrapper {
   display: grid;
-  width: 98%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1480px;
   height: 100vh;
   grid-template-rows: 75px 1fr;
   grid-template-columns: 20% 1fr;
-  grid-row-gap: 15px;
-  grid-column-gap: 15px;
   grid-template-areas: 
   "header header"
   "nav main-content";
-  background-color: #dcd6f7;
+  background-color:#eeeeee;
 
 }
 
 .wrapperContent {
     grid-area: main-content;
-    background-color: #ffffff;
-    border-radius: 25px;
-
+    background-color:#eeeeee;
+    margin-top: 15px;
+    margin-left:50px;
 }
 
 .preloaderWrapper {

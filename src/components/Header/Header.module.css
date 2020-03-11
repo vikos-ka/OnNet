@@ -1,25 +1,25 @@
-.header {
+header {
     grid-area: header;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #424874;
+    background-color: #5e35b1;
+    color: #fff;
     position: fixed;
     width: inherit;
     height: 75px;
-    border-radius: 25px;
+    z-index: 1000;
 }
   
 .logo {
     font-size: 1.5em;
     color: #fff;
-    padding-top: 15px;
     text-align: center;
     width: 18%;
 }
   
 .logo svg{
-    color:#4272bf;
+    color: #3ca9fc;
 }
   
 .header .serviceBar {
@@ -55,7 +55,7 @@
     color: #fff;
     font-size: 15px;
     position: absolute;
-    left: 90%;
+    left: 80%;
     top: 50%;
     transform: translateY(-50%);
     border: medium none;
@@ -79,14 +79,19 @@
     
 }
 
+::-webkit-input-placeholder {color: #fff; font-size: 1em; font-weight: 700;}
+::-moz-placeholder          {color: #fff; font-size: 1em; font-weight: 700;}
+:-moz-placeholder           {color: #fff; font-size: 1em; font-weight: 700;}
+:-ms-input-placeholder      {color: #fff; font-size: 1em; font-weight: 700;}
+
 .btn {
     background: #3ca9fc none repeat scroll 0 0;
     border: medium none;
     border-radius: 5px;
     color: #fff;
     font-weight: 500;
-    margin-top: 11px;
-    padding: 5px;
+
+    padding: 10px;
     width: 100%;
     transition: all 0.2s linear 0s;
 }
@@ -98,4 +103,14 @@
     color: #fff;
     line-height: .8;
     text-align: center;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login span{
+    padding-right: 10px;
 }

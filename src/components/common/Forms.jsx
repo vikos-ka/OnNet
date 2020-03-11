@@ -38,6 +38,7 @@ export const Textarea = (props) => {
 export const Input = (props) => {
     const {input, meta, child, ...restProps} = props;
     return <FormControl {...props}>
-        <input {...input} {...restProps} />
+        <input className = {style.check} {...input} {...restProps} />
+        <label className = {style.checkedLabel} for ="rememberMe"></label>
     </FormControl>
 }

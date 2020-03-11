@@ -1,23 +1,9 @@
 
-.main__content {
-    grid-area: main-content;
-    background-color: #ffffff;
-
-}
-
-.cover {
-    height: 200px;
-    background-image: url("https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  
-}
 
 .posts {
     margin: 0 auto;
-    margin-top: 2%;
-    width: 80%;
-
+    width: 100%;
+    background-color: #fff;
 }
 
 

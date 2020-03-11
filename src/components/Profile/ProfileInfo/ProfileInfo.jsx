@@ -35,30 +35,34 @@ const ProfileInfo = ({profile, savePhoto, isOwner,updateStatus, status, saveProf
     return(
   
         <div className = { style.profile }>
-          <div className = { style.user }>
-							<h4 className ={style.user__name}>Your page</h4>	
 							<div className={style.your__page}>
                 <div className={style.user__photo}>
 								<figure>
                 	<img src={
                     profile.photos.large || 
                    placeholder} alt="avatar" />
-                   {isOwner && <input type="file" onChange = {mainPhotoSelected} />}
+                   {isOwner && 
+                    <div className="input-group mb-3">
+    
+                      <div className ="custom-file">
+                        <input type="file" onChange = {mainPhotoSelected}className ="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+                        <label className ="custom-file-label" for="inputGroupFile01">Choose file</label>
+                      </div>
+                    </div>}
 								</figure>
+                <ProfileStatuswithHooks status ={status} updateStatus = {updateStatus} />
                 </div>
-                <div className="user__info">
+                <div className={style.user__info}>
 
                   { editMode 
                   ? <ProfileDataForm profile = {profile} initialValues = {profile} onSubmit = {onSubmit} />
                   :  <ProfileData profile = {profile} isOwner = {isOwner} activateEdit = {activateEdit} />
                   }
 
-                  <ProfileStatuswithHooks status ={status} updateStatus = {updateStatus} />
+    
                 </div>
 								</div>
 						</div>
-
-          </div>
    
     );
 }
