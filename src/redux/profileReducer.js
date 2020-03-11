@@ -1,9 +1,13 @@
-import { userAPI, profileAPI } from '../api/api'
+import { userAPI, profileAPI } from '../api/api';
+
+import { stopSubmit } from 'redux-form';
+
 
 const ADD_POST = 'profile/ADD-POST';
 const DELETE_POST = 'profile/DELETE-POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
+const SET_USER_PHOTO = 'profile/SET_USER_PHOTO';
 
 const initialState = {
     posts: [{
@@ -58,7 +62,7 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
-                id:5,
+                id: Math.ceil(Math.random() * 100)+ 8,
                 message: action.newPostText,
                 like: 12,
                 comment: 9999,
@@ -91,6 +95,13 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
+        case SET_USER_PHOTO: {
+            return {
+                ...state,
+               profile: {...state.profile, photos: action.photos}
+            }
+        }
+
         default: 
             return state;
     }
@@ -109,6 +120,10 @@ export const setStatus = (status) => ({
     type: SET_STATUS, status
 });
 
+export const setUserPhoto = (photos) => ({
+    type: SET_USER_PHOTO, photos
+});
+
 
 export const getUserProfileThunk = (userId) => 
     async (dispatch) => {
@@ -118,14 +133,36 @@ export const getUserProfileThunk = (userId) =>
 
 
 export const getStatusThunk = (userId) => async (dispatch) => {
+  
     const response = await profileAPI.getStatus(userId)
         dispatch(setStatus(response.data));
+
 };
 
 export const updateStatusThunk = (status) => async (dispatch) => {
     const response = await profileAPI.updateStatus(status)
     if(response.data.resultCode === 0) {
         dispatch(setStatus(status));}
+        
+}
+
+export const savePhotoThunk = (file) => async (dispatch) => {
+    const response = await profileAPI.savePhoto(file)
+    if(response.data.resultCode === 0) {
+        dispatch(setUserPhoto(response.data.data.photos));}
 };
+
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().authReducer.userId;
+    const response = await profileAPI.saveProfile(profile);
+    if(response.data.resultCode === 0) {
+        dispatch(getUserProfileThunk(userId));
+    } else {
+        const message = response.data.messages.length > 0? response.data.messages[0] : 'some error';
+        dispatch(stopSubmit("editProfile", {_error: message}))
+      }  
+
+};
+
 
 export default profileReducer;

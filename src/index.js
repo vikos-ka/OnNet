@@ -4,11 +4,10 @@ import './normalize.css';
 import MainApp from './App';
 
 
-
-
 ReactDOM.render(
-    
-   <MainApp />, document.querySelector('#root'));
+   <MainApp />,
+    document.querySelector('#root')
+   );
 
 
 

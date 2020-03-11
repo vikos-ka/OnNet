@@ -1,7 +1,6 @@
 body {
-  background-color: #ffffff;
+  background-color: #dcd6f7;
   font-family: 'Roboto', sans-serif;
-  height: 100vh;
   box-sizing: border-box;
 }
 
@@ -18,22 +17,38 @@ a {
   text-decoration: none;
 }
 
-
 .wrapper {
   display: grid;
+  width: 98%;
   margin: 0 auto;
-  width: 100%;
-  height: 100vw;
-  grid-template-rows: 50px 1fr;
-  grid-template-columns: 18% 1fr;
+  height: 100vh;
+  grid-template-rows: 75px 1fr;
+  grid-template-columns: 20% 1fr;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
   grid-template-areas: 
   "header header"
   "nav main-content";
-  background-color: #f6f7fa;
+  background-color: #dcd6f7;
+
 }
 
 .wrapperContent {
     grid-area: main-content;
     background-color: #ffffff;
+    border-radius: 25px;
+
+}
+
+.preloaderWrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 

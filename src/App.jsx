@@ -1,10 +1,8 @@
 import React, { Suspense } from 'react';
-import {Route, withRouter} from 'react-router-dom';
-import { connect } from 'react-redux';
+import {HashRouter, Route, withRouter, Switch, Redirect} from 'react-router-dom';
+import { Provider, connect } from 'react-redux';
 import { compose } from 'redux';
 import store from './redux/reduxStore';
-import {BrowserRouter} from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 import style from './App.module.css';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -25,29 +23,44 @@ const ProfileContainer = React.lazy( () => import('./components/Profile/ProfileC
 
 
 class App extends React.Component {
-
+  catchAllUnhandledErrors = (promiseRejectionEvent) => {
+    debugger;
+    console.error(promiseRejectionEvent);
+  }
   componentDidMount() {
-    this.props.initialiseThunk()
+    this.props.initialiseThunk();
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
   }
 
   render() {
     if(!this.props.initialised) {
-      return <Preloader />
+      return <div className = {style.preloaderWrapper}><Preloader /></div>
     }
     return ( 
       <div className={ style.wrapper }>
         <HeaderContainer />
         <Navbar />
         <main className={ style.wrapperContent }>
-            <Route exact path = '/' render={ () => {return <Suspense fallback = {Preloader}><ProfileContainer /></Suspense> } } />
-            <Route path = '/profile/:userId?' render={ () => {return <Suspense fallback = {Preloader}><ProfileContainer /></Suspense> } } />
-            <Route path = '/dialogs' render={ () => {return <Suspense fallback = {Preloader}><DialogsContainer /></Suspense> }} />
+          <Switch>
+            <Route exact path = '/' render={ () => {return <Redirect to='/profile' />}} />
+            <Route path = '/profile/:userId?' render={ () => {return <Suspense fallback = {Preloader}>
+              <ProfileContainer />
+            </Suspense> } } />
+            <Route path = '/dialogs' render={ () => {return <Suspense fallback = {Preloader}>
+              <DialogsContainer />
+            </Suspense> }} />
             <Route path = '/login' render = {() => <Login /> } />
             
-            <Route path = '/users' render = { () => {return <Suspense fallback = {Preloader}><UsersContainer /></Suspense> } } />
+            <Route path = '/users' render = { () => {return <Suspense fallback = {Preloader}>
+              <UsersContainer />
+            </Suspense> } } />
             <Route path = '/music' render ={ () => <Music /> } />
             <Route path = '/news' render ={ () => <News /> } />
             <Route path = '/settings' render ={ () => <Settings /> } />
+            </Switch>
         </main> 
       </div> 
     );
@@ -65,11 +78,11 @@ const AppContainer =  compose(
 
 
 const MainApp = (props) => {
-  return  <BrowserRouter>
+  return  <HashRouter basename={process.env.PUBLIC_URL}>
   <Provider store = {store}>
       <AppContainer />
   </Provider>
-</BrowserRouter>
+</HashRouter>
 }
 
 export default MainApp;

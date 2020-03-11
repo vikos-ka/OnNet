@@ -3,9 +3,6 @@ import style from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
-
-  
-
     return (
         <header className = {style.header}>
           <div className = {style.logo}>
@@ -24,10 +21,6 @@ const Header = (props) => {
 
           </div>
 
-        <div className = {style.profile}>
-          <div className = {style.user__photo}></div>
-          <div className = {style.user__name}></div>
-        </div>
         <div className={style.login__block}>
           {props.isAuth 
             ? <div> {props.login}<button className = {style.btn} onClick = {props.logoutThunk}>Logout</button></div>

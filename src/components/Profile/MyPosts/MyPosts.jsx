@@ -17,8 +17,7 @@ const AddNewPostForm = (props) => {
 					</figure>
                     <form onSubmit = {props.handleSubmit}>
 			            <Field component = {Textarea} name ="newPostText" validate = {[required, maxLength10]} placeholder="Share some what you are thinking?" />
-                <ul>
-                    <li className = {style.liItems}>
+                <ul className = {style.liItems}>
                         <li>
 						<i className="fa fa-map-marker" />
 					    </li>
@@ -34,8 +33,6 @@ const AddNewPostForm = (props) => {
 					    <li>
 						    <i className="fa fa-camera" />
 					    </li>
-                    </li>
-					
 				</ul>
                 <button id = {style.btn} type = "submit">Post</button>
                 </form></div>

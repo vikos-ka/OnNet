@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { Input, CreateField } from '../common/Forms';
 
 import style from './Login.module.css'
-import { Input } from '../common/Forms';
+
 import {required} from '../../utils/validators/validators';
-import { loginThunk, logoutThunk } from '../../redux/authReducer'
+import { loginThunk, logoutThunk, getCaptchaThunk } from '../../redux/authReducer'
 
 
 
@@ -27,7 +28,13 @@ const LoginForm = (props) => {
                     Remember me on this computer
                 </label>
             </div>
+
+            { props.captcha && <img src = {props.captcha} alt = "captcha"/>}
+
+            { props.captcha && CreateField ('Symbols', 'captcha', [required], Input)}
+
             {props.error && <div>{props.error}</div>}
+
             <button id = "loginBtn" className={style.form__field + " " + style.loginBtn} type="submit">Login</button>
         </form>
     )
@@ -41,18 +48,20 @@ const ReduxLoginForm = reduxForm({
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.loginThunk(formData.email, formData.password, formData.rememberMe);
+        props.loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
     if (props.isAuth) {
         return <Redirect to = {'/profile'} />
     }
     return <div className = {style.form__container}>
-        <ReduxLoginForm onSubmit = {onSubmit}/>
+        <ReduxLoginForm onSubmit = {onSubmit} captcha = {props.captcha} />
     </div>
 }
 
 const mapStateToProps = (state) => (
-    {isAuth: state.authReducer.isAuth}
+    {
+        captcha: state.authReducer.captcha,
+        isAuth: state.authReducer.isAuth}
 )
 
-export default connect(mapStateToProps, {loginThunk, logoutThunk})(Login);
+export default connect(mapStateToProps, {loginThunk, logoutThunk, getCaptchaThunk})(Login);

@@ -7,8 +7,15 @@ const Profile = (props) => {
 
     return(
       <section className = { style.profile }>
-        <ProfileInfo profile = {props.profile} status = {props.status} updateStatus = {props.updateStatus} />    
-        <MyPostsContainer  store = {props.store} />   
+        <ProfileInfo 
+          profile = {props.profile} 
+          status = {props.status} 
+          isOwner={props.isOwner} 
+          updateStatus = {props.updateStatus} 
+          savePhoto={props.savePhoto} 
+          saveProfile = {props.saveProfile} />    
+        <MyPostsContainer  
+        store = {props.store} />   
       </section>
     );
 }

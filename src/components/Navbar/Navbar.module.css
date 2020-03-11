@@ -1,28 +1,27 @@
 .nav {
     grid-area: nav;
-    background-color:#0e1a35;
+    background-color:#424874;
     color:#ffffff;
-    font-size: .8em;
     position: fixed;
-    height: 100vh;
-    top: 50px;
-    width: 18%;
+    top: 90px;
+    font-size: 1em;
+    width: 20%;
+    border-radius: 25px;
 }
   
 .nav .item {
     text-transform: uppercase;  
     padding: 10% 0;
     padding-left: 15%;
-    background-color:#0e1a35;
-  
 }
+
 .activeLink .item {
    background-color: firebrick;
  
 }
 
 .nav a.active li::before {
-    background-color: #122143;
+    background-color: #424874;
     
    
  }
