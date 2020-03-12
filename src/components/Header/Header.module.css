@@ -22,8 +22,8 @@ header {
     color: #3ca9fc;
 }
   
-.header .serviceBar {
-    width: 80%;
+.serviceBar {
+    width: 100%;
 }
 
 .topSearch {

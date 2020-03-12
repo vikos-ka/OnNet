@@ -2,22 +2,18 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
 import { Field, reduxForm } from 'redux-form';
-import {required, maxLengthcreator} from '../../../utils/validators/validators'
 import { Textarea } from '../../common/Forms';
 
-const maxLength10 = maxLengthcreator(10);
 
 const AddNewPostForm = (props) => {
     return (
         <div className={style.newPost}>
-                <span id="createPost">Create Post</span>
+                
                 <div className= {style.postBox}>
-                    <figure>
-						<img src="https://via.placeholder.com/50" alt="admin" />
-					</figure>
+                    <h5 id="createPost">Create Post</h5>
                     <form onSubmit = {props.handleSubmit}>
-			            <Field component = {Textarea} name ="newPostText" validate = {[required, maxLength10]} placeholder="Share some what you are thinking?" />
-                <ul className = {style.liItems}>
+			            <Field component = {Textarea} name ="newPostText" placeholder="Share some what you are thinking?" />
+                    <ul className = {style.liItems}>
                         <li>
 						<i className="fa fa-map-marker" />
 					    </li>
@@ -34,7 +30,7 @@ const AddNewPostForm = (props) => {
 						    <i className="fa fa-camera" />
 					    </li>
 				</ul>
-                <button id = {style.btn} type = "submit">Post</button>
+                <button className= "btn btn-outline-primary" id = {style.btn} type = "submit">Post</button>
                 </form></div>
          </div>
     )
@@ -52,6 +48,7 @@ const MyPosts = React.memo(props => {
                             like = {post.like} 
                             comment = {post.comment}
                             key = {post.id} 
+                            
                         />).reverse();
 
     const onAddPost = (values) => {  
@@ -61,9 +58,8 @@ const MyPosts = React.memo(props => {
     return(
         <div className ={style.posts}>
             <AddNewPostFormRedux onSubmit = {onAddPost}/>
-        <div className = {style.posts}>
+        <div className = {style.postItems}>
             {postsItems}
-
         </div>
         </div>    
     );

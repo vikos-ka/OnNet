@@ -25,7 +25,6 @@ class UserContainer extends React.Component {
         
         return (
         <section className={style.users__container}>
-            {this.props.isFetching? <div className = {style.preloader__container}><Preloader /></div> : null}
             <Users totalUsersCount = {this.props.totalUsersCount} 
                 pageSize = {this.props.pageSize} 
                 currentPage = {this.props.currentPage} 
@@ -33,7 +32,8 @@ class UserContainer extends React.Component {
                 users = {this.props.users} 
                 follow = {this.props.follow} 
                 unfollow = {this.props.unfollow}
-                followingInProgress = {this.props.followingInProgress}/>
+                followingInProgress = {this.props.followingInProgress}
+                isFetching = {this.props.isFetching}/>
             </section>
         )
     }

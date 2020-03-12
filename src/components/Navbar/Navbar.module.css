@@ -9,28 +9,26 @@
     margin: 0 15px;
     padding-right: 15px;
     margin-right: 15px;
+
 }
   
 .nav .item {
     text-transform: uppercase;  
     padding: 5% 0;
     padding-left: 15%;
-}
-
-.activeLink .item {
-   background-color: firebrick;
- 
-}
-
-.nav a.active li::before {
-    background-color: #424874;
     
-   
- }
+    cursor: pointer;
+}
+
+.nav .item  a:hover{
+    color: #3ca9fc;
+    transition: color linear .1s;
+}
+
 
 .nav li svg {
     font-size: 2em;
     padding-top: 5%;
     padding-right: 5%;
-    color: #4272bf;
+    color: #3ca9fc;
 }

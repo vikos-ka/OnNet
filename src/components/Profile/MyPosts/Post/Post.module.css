@@ -1,7 +1,9 @@
 .post {
     margin: 2% 4%;
-    width: 70%;
+    background: #fff none repeat scroll 0 0;
+    
 }
+
 
 .postAndAuthor {
     display: flex;
@@ -10,18 +12,28 @@
 
 .postAuthor {
     margin-right: 2%;
+    width: 80px;
 }
 
 .postText {
     max-height: 50%;
-    font-size: .8em;
+    font-size: 1em;
+    border: 1px solid #ede9e9;
+    border-radius: 5px;
+    width: 100%;
+    
+}
+
+.postText p {
+    padding: 10px;
     
 }
 
 .likeComment {
     display: flex;
-    font-size: .7em;
-    color: #4272bf;
+    font-size: 1em;
+    color: #3ca9fc;
+    padding: 10px;
     cursor: pointer;
 }
 

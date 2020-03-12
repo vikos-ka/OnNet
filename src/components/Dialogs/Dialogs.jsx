@@ -34,12 +34,12 @@ const Dialogs = (props) => {
             
             <div className = {style.dialogItems}>
 
-                <h2>Dialogs</h2>
+                <h4>Dialogs</h4>
                 {dialogItems} 
             </div>
 
             <div className = {style.messages}>
-                <h2>Messages</h2>
+                <h4>Messages</h4>
                 <div className = {style.message__Item}>{messageItems}</div>
                     <NewMessageFormRedux onSubmit = {addNewMessage}/>            
             </div>
@@ -55,7 +55,7 @@ const NewMessageForm = (props) => {
             <div className ={style.text_area}>
                 <Field component = {Textarea} validate = {[ required, maxLength50]} name = "newMessageBody" 
                 placeholder="Write a message" />
-                 <button type= "submit" ><i class="fa fa-paper-plane-o"></i></button>
+                 <button className = "btn" type= "submit" ><i className="fa fa-paper-plane-o"></i></button>
             </div>
         </form>
     );

@@ -15,7 +15,7 @@ const Profile = (props) => {
           savePhoto={props.savePhoto} 
           saveProfile = {props.saveProfile} />    
         <MyPostsContainer  
-        store = {props.store} />   
+        store = {props.store}/>   
       </section>
     );
 }

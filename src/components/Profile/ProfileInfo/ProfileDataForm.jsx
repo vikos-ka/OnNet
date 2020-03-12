@@ -1,22 +1,25 @@
 import React from 'react';
 import { Input, CreateField, Textarea } from '../../common/Forms';
 import { reduxForm } from 'redux-form';
-import style from './ProfileInfo.module.css';
 
 const ProfileDataForm = ({handleSubmit, profile, error}) => {
     return (
-        <form  onSubmit = {handleSubmit}>
-          <button>save</button>
-          <div>{error && <div>{error}</div>}</div>
-          <div>Full name: {CreateField ('Full name', 'fullName', [], Input)}</div>
-        <div>
-          Looking for a job: { CreateField('', 'lokingForAJob', [], Input, {type: 'checkbox'}) }
-        </div>
-          <div>My proffesional skills: { CreateField('My professional skills', 'lookingForAJobDescription', [], Textarea ) }</div>
-        <div>
-          About me: { CreateField('About me', 'aboutMe', [], Textarea ) }
-        </div>
-        <div>Contacts:
+        <form onSubmit = {handleSubmit}>
+          <div className="editForm form-group">{error && <div>{error}</div>}
+          <div>
+            {CreateField ('Full name', 'fullName', [], Input)}
+          </div>
+          <div>
+            { CreateField('', 'lokingForAJob', [], Input, {type: 'checkbox', className: 'form-check-input'}) }
+            <span>Looking for a job</span>
+          </div>
+          <div>
+            { CreateField('My professional skills', 'lookingForAJobDescription', [], Textarea ) }
+          </div>
+          <div>
+              { CreateField('About me', 'aboutMe', [], Textarea ) }
+          </div>
+        <div><span>Contacts:</span> </div>
           {Object.keys(profile.contacts)
             .map( (key) => {
               return <div key = {key}>
@@ -25,8 +28,9 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
               </div>
                }
            )}
-        </div>
-    </form>
+           <button className="btn btn-outline-primary btn-lg mt-3">save</button>
+           </div>
+       </form>
     )
   }
 

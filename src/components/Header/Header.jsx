@@ -11,7 +11,7 @@ const Header = (props) => {
 
           <div className = {style.serviceBar}>
             <div className={style.topSearch}>
-              <form action="" method="post">
+              <form action="" method="#">
                 <input type="text" placeholder = "Search People, Groups, Pages etc"/>
                 <button id = {style.searchBtn}>
                   <i className="fas fa-search"></i>

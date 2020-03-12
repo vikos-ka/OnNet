@@ -13,12 +13,12 @@ const initialState = {
     posts: [{
         id: 1,
         message: "Hi! How are you?",
-        like: 12,
-        comment: 9999
+        like: 5,
+        comment: 10
     },
     {
         id: 2,
-        message: "It's my first page",
+        message: "It's my React App",
         like: 40,
         comment: 1
     },
@@ -30,28 +30,10 @@ const initialState = {
     },
     {
         id: 4,
-        message: "Mike",
-        like: 12,
-        comment: 9999
-    },
-    {
-        id: 5,
-        message: "Tom",
-        like: 12,
-        comment: 9999
-    },
-    {
-        id: 6,
-        message: "Miles",
-        like: 12,
-        comment: 9999
-    },
-    {
-        id: 7,
-        message: "Vika",
-        like: 12,
-        comment: 9999
-    },
+        message: "Hola, amigos!",
+        like: 3,
+        comment: 5
+    }
 ],
 
 profile: null,

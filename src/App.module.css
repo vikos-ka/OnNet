@@ -2,6 +2,7 @@ body {
   background-color: #efefef;
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
+
 }
 
 ul {
@@ -20,7 +21,6 @@ a {
 
 a:hover {
  text-decoration: none;
-  
 }
 
 .wrapper {

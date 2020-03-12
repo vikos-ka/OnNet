@@ -9,7 +9,7 @@
     color: 1px solid red;
 }
 
-.checkedLabel label{
+.checkedLabel{
     width: 20px;
     height: 20px;
     position: absolute;

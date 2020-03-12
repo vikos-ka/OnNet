@@ -8,16 +8,13 @@ import style from './App.module.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import Login from './components/Login/Login'
-import Music from './components/Music/Music';
-import News from './components/News/News'
-import Settings from './components/Settings/Settings';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 import {initialiseThunk} from './redux/appReducer';
 import Preloader from './components/common/preloader';
 
 const DialogsContainer = React.lazy( () => import('./components/Dialogs/DialogsContainer'));
 const UsersContainer = React.lazy( () => import('./components/Users/UsersContainer'));
-const ProfileContainer = React.lazy( () => import('./components/Profile/ProfileContainer'));
 
 
 
@@ -46,9 +43,8 @@ class App extends React.Component {
         <main className={ style.wrapperContent }>
           <Switch>
             <Route exact path = '/' render={ () => {return <Redirect to='/profile' />}} />
-            <Route path = '/profile/:userId?' render={ () => {return <Suspense fallback = {Preloader}>
-              <ProfileContainer />
-            </Suspense> } } />
+            <Route path = '/profile/:userId?' render={ () => 
+              <ProfileContainer />} />
             <Route path = '/dialogs' render={ () => {return <Suspense fallback = {Preloader}>
               <DialogsContainer />
             </Suspense> }} />
@@ -57,9 +53,6 @@ class App extends React.Component {
             <Route path = '/users' render = { () => {return <Suspense fallback = {Preloader}>
               <UsersContainer />
             </Suspense> } } />
-            <Route path = '/music' render ={ () => <Music /> } />
-            <Route path = '/news' render ={ () => <News /> } />
-            <Route path = '/settings' render ={ () => <Settings /> } />
             </Switch>
         </main> 
       </div> 

@@ -31,14 +31,14 @@ export const CreateField = (placeholder, name, validator, component, props = {},
 export const Textarea = (props) => {
     const {input, meta, child, ...restProps} = props;
     return <FormControl {...props} >
-        <textarea {...input} {...restProps} />
+        <textarea className="form-control" {...input} {...restProps} />
     </FormControl>
 }
 
 export const Input = (props) => {
     const {input, meta, child, ...restProps} = props;
     return <FormControl {...props}>
-        <input className = {style.check} {...input} {...restProps} />
-        <label className = {style.checkedLabel} for ="rememberMe"></label>
+        <input className = "form-control" {...input} {...restProps} />
+        <label className = {style.checkedLabel} htmlFor ="rememberMe"></label>
     </FormControl>
 }
